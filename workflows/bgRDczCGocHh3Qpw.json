@@ -1,0 +1,260 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get Language Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Event List": {
+      "main": [
+        [
+          {
+            "node": "Insert or update Event Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Language Bridge Tag": {
+      "main": [
+        [
+          {
+            "node": "Insert or update Language Bridge Tag",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Language Lists": {
+      "main": [
+        [
+          {
+            "node": "Insert or update Language Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-31T07:35:55.105Z",
+  "id": "bgRDczCGocHh3Qpw",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Copy Data From AWS DB To 42.43 DB",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1008,
+        -48
+      ],
+      "id": "8f096352-149b-493f-be79-82233252efb4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "event_list",
+          "mode": "list",
+          "cachedResultName": "event_list"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "no",
+              "condition": ">=",
+              "value": "4655"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -672,
+        -48
+      ],
+      "id": "2a0ab2c9-73d0-4ef4-b4eb-a5394cdab1e0",
+      "name": "Get Event List",
+      "credentials": {
+        "mySql": {
+          "id": "Dpz7FnTuTNNy0btV",
+          "name": "AWS DB - msi_event_2012"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "event_list",
+          "mode": "list",
+          "cachedResultName": "event_list"
+        },
+        "columnToMatchOn": "no",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -384,
+        -48
+      ],
+      "id": "3c2e9495-5e9a-4f14-88d3-3fee9853c5c1",
+      "name": "Insert or update Event Lists",
+      "credentials": {
+        "mySql": {
+          "id": "GD6nxlgwEqCeo1wg",
+          "name": "172.16.42.43 DB - msi_event_2012"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "language_bridge_tag",
+          "mode": "list",
+          "cachedResultName": "language_bridge_tag"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -672,
+        -336
+      ],
+      "id": "6d636162-a53f-4124-af7d-7aef77c559cf",
+      "name": "Get Language Bridge Tag",
+      "credentials": {
+        "mySql": {
+          "id": "G2rWnGs8MQ9QmyfQ",
+          "name": "AWS DB - msi_product_registration_2012"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "language_bridge_tag",
+          "mode": "list",
+          "cachedResultName": "language_bridge_tag"
+        },
+        "columnToMatchOn": "no",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -400,
+        -336
+      ],
+      "id": "b09b75e3-7211-4d8d-bde7-4ba3e8f65545",
+      "name": "Insert or update Language Bridge Tag",
+      "credentials": {
+        "mySql": {
+          "id": "86yWQSQMuihfytrg",
+          "name": "172.16.42.43 DB - msi_product_registration_2012"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "language_list",
+          "mode": "list",
+          "cachedResultName": "language_list"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -672,
+        -528
+      ],
+      "id": "15569929-7c10-49da-a711-2d23c7bd1a53",
+      "name": "Get Language Lists",
+      "credentials": {
+        "mySql": {
+          "id": "G2rWnGs8MQ9QmyfQ",
+          "name": "AWS DB - msi_product_registration_2012"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "language_list",
+          "mode": "list",
+          "cachedResultName": "language_list"
+        },
+        "columnToMatchOn": "lang_no",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -400,
+        -528
+      ],
+      "id": "80a83e79-a5b0-4fc6-b384-ffd996b279c0",
+      "name": "Insert or update Language Lists",
+      "credentials": {
+        "mySql": {
+          "id": "86yWQSQMuihfytrg",
+          "name": "172.16.42.43 DB - msi_product_registration_2012"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-31T07:35:55.107Z",
+      "createdAt": "2025-12-31T07:35:55.107Z",
+      "role": "workflow:owner",
+      "workflowId": "bgRDczCGocHh3Qpw",
+      "projectId": "oGCkDg1E8N3mqmv6"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-07T10:31:10.539Z",
+  "versionId": "e60f4221-6902-4ae1-b48d-d1085cb89635"
+}
