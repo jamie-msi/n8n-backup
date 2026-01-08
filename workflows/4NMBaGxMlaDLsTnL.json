@@ -1,0 +1,216 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "n8n": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Call 'Backup your workflows to GitHub (Sub Workflow)'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "n8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "n8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'Backup your workflows to GitHub (Sub Workflow)'": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-08T01:39:48.700Z",
+  "id": "4NMBaGxMlaDLsTnL",
+  "isArchived": false,
+  "meta": {
+    "templateId": "2868",
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Backup your workflows to GitHub (Main Workflow)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "42cc4260-626e-4f83-b1c3-c78c99b78b38",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        816,
+        496
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "filters": {},
+        "requestOptions": {}
+      },
+      "id": "82851e4a-33a1-461b-965f-f51efcb5af90",
+      "name": "n8n",
+      "type": "n8n-nodes-base.n8n",
+      "position": [
+        1072,
+        592
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "8dHPsEmLTqNqIJDk",
+          "name": "n8n account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d05e2a25-24be-43fb-baa4-9c3391840e70",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        1280,
+        592
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7
+            }
+          ]
+        }
+      },
+      "id": "2a139d59-1387-4899-88b3-21106cd01099",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        816,
+        688
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "content": "## Backup to GitHub \nThis workflow will backup all instance workflows to GitHub.\n\nThe files are saved `ID.json` for the filename.\n\n### Setup\nOpen `Globals` node and update the values below 👇\n\n- **repo.owner:** your Github username\n- **repo.name:** the name of your repository\n- **repo.path:** the folder to use within the repository. If it doesn't exist it will be created.\n\n\nIf your username was `john-doe` and your repository was called `n8n-backups` and you wanted the workflows to go into a `workflows` folder you would set:\n\n- repo.owner - john-doe\n- repo.name - n8n-backups\n- repo.path - workflows/\n\n\nThe workflow calls itself using a subworkflow, to help reduce memory usage.",
+        "height": 600.88409546716,
+        "width": 371.1995072042308,
+        "color": 4
+      },
+      "id": "04e6c245-3117-4ef8-a181-754e616e958b",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        368,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Main workflow loop",
+        "height": 435,
+        "width": 1110,
+        "color": 7
+      },
+      "id": "3d996985-0064-4749-85a1-2191c73746c9",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        768,
+        416
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "b6HDpQuA2ZD3Txkj",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/b6HDpQuA2ZD3Txkj",
+          "cachedResultName": "Backup your workflows to GitHub (Sub Workflow)"
+        },
+        "workflowInputs": {
+          "value": {},
+          "schema": [],
+          "mappingMode": "defineBelow",
+          "matchingColumns": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "id": "8e5b3f71-0c5e-4e78-a3f7-0b574c9ddf06",
+      "name": "Call 'Backup your workflows to GitHub (Sub Workflow)'",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "position": [
+        1520,
+        608
+      ],
+      "typeVersion": 1.2
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-08T01:39:48.702Z",
+      "createdAt": "2026-01-08T01:39:48.702Z",
+      "role": "workflow:owner",
+      "workflowId": "4NMBaGxMlaDLsTnL",
+      "projectId": "oGCkDg1E8N3mqmv6"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-08T03:36:33.368Z",
+  "versionId": "ba319bb8-1e97-4841-803e-846ff047b67e"
+}
