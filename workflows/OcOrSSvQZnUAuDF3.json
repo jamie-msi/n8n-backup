@@ -977,7 +977,7 @@
       "main": [
         [
           {
-            "node": "Limit",
+            "node": "Code in JavaScript",
             "type": "main",
             "index": 0
           }
@@ -995,7 +995,14 @@
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Mark Status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Status",
             "type": "main",
             "index": 0
           }
@@ -1098,7 +1105,13 @@
     },
     "Setting Line Notification Account": {
       "main": [
-        []
+        [
+          {
+            "node": "Line Messaging",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Limit": {
@@ -1106,6 +1119,28 @@
         [
           {
             "node": "Setting Line Notification Account",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Status": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Limit",
             "type": "main",
             "index": 0
           }
@@ -1458,7 +1493,7 @@
       "parameters": {
         "content": "## Main workflow loop",
         "height": 435,
-        "width": 1686,
+        "width": 1878,
         "color": 7
       },
       "id": "3d996985-0064-4749-85a1-2191c73746c9",
@@ -1595,7 +1630,8 @@
         1536,
         608
       ],
-      "typeVersion": 1.2
+      "typeVersion": 1.2,
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -1693,7 +1729,7 @@
         "messages": {
           "values": [
             {
-              "text": "=✅ 任務執行完成！\n執行清單如下：\n{{ $json.success_list }}\n\n共完成 {{ $json.success_list.split('\\n').length }} 筆。"
+              "text": "=📊 Backup n8n workflows to GitHub 備份執行報告\n------------------------------------\n✅ 成功: {{ $json.success_count }} 筆\n{{ $json.success_details }}\n\n❌ 失敗: {{ $json.failure_count }} 筆\n{{ $json.failure_details }}\n------------------------------------\n執行時間: {{ $now.format('yyyy-MM-dd HH:mm') }}"
             }
           ]
         }
@@ -1701,8 +1737,8 @@
       "type": "@aotoki/n8n-nodes-line-messaging.lineMessaging",
       "typeVersion": 1,
       "position": [
-        2176,
-        464
+        2224,
+        448
       ],
       "id": "f9d79fce-007b-4a76-9f92-37e9a431d8e0",
       "name": "Line Messaging",
@@ -1731,13 +1767,14 @@
             }
           ]
         },
+        "includeOtherFields": true,
         "options": {}
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1952,
-        464
+        2016,
+        448
       ],
       "id": "3b067571-fd90-4e72-82cc-fead33b7cfb6",
       "name": "Setting Line Notification Account"
@@ -1747,11 +1784,60 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        1744,
-        464
+        1808,
+        448
       ],
       "id": "2d4cbfb8-bb3b-4765-8475-223555cf7bda",
-      "name": "Limit"
+      "name": "Limit",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2b49c3b2-d604-4bcc-b85d-408616562b29",
+              "name": "=name",
+              "value": "={{ $('Loop Over Items').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "1d75f6e2-6788-4010-90b4-6d7649416be4",
+              "name": "status",
+              "value": "={{ $json.error ? '❌ 失敗' : '✅ 成功' }}",
+              "type": "string"
+            },
+            {
+              "id": "d8bdd9f7-3c22-4482-a1ac-edd7a7837391",
+              "name": "reason",
+              "value": "={{ $json.error ? $json.error.message : 'OK' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1808,
+        608
+      ],
+      "id": "c9d9e95a-4166-46b4-9cb7-1ad8d5e8913b",
+      "name": "Mark Status"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 抓取 \"Mark Status\" 這個節點在所有循環中產生的數據\nconst allResults = $items(\"Mark Status\");\n\nconst success = allResults.filter(i => i.json.status.includes('成功'));\nconst failure = allResults.filter(i => i.json.status.includes('失敗'));\n\nconst successList = success.map(i => i.json.name).join('\\n') || '無';\nconst failureList = failure.map(i => i.json.name + ' (' + i.json.reason + ')').join('\\n') || '無';\n\nreturn {\n  success_count: success.length,\n  failure_count: failure.length,\n  success_details: successList,\n  failure_details: failureList\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1536,
+        448
+      ],
+      "id": "ed6863e5-7942-402f-88b2-c9eb7349bb23",
+      "name": "Code in JavaScript"
     }
   ],
   "pinData": {},
@@ -1777,6 +1863,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-09T09:14:53.195Z",
-  "versionId": "a5dec685-5920-4c27-8df4-58faf8a036a0"
+  "updatedAt": "2026-01-09T09:34:36.657Z",
+  "versionId": "a19f3f53-267d-43ac-85c9-7b9e642f0e58"
 }
