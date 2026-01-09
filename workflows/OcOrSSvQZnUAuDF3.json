@@ -977,7 +977,7 @@
       "main": [
         [
           {
-            "node": "Code in JavaScript",
+            "node": "Aggregate",
             "type": "main",
             "index": 0
           }
@@ -1141,6 +1141,17 @@
         [
           {
             "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
             "type": "main",
             "index": 0
           }
@@ -1821,14 +1832,14 @@
       "typeVersion": 3.4,
       "position": [
         1808,
-        608
+        592
       ],
       "id": "c9d9e95a-4166-46b4-9cb7-1ad8d5e8913b",
       "name": "Mark Status"
     },
     {
       "parameters": {
-        "jsCode": "// 關鍵：必須使用 $items(\"節點名\") 才能穿透 Loop 抓取所有歷史資料\nconst allResults = $items(\"Mark Status\"); \n\nconst success = allResults.filter(i => i.json.status.includes('成功'));\nconst failure = allResults.filter(i => i.json.status.includes('失敗'));\n\nconst successList = success.map(i => i.json.name).join('\\n') || '無';\nconst failureList = failure.map(i => i.json.name + (i.json.reason !== 'OK' ? ' (' + i.json.reason + ')' : '')).join('\\n') || '無';\n\nreturn {\n  success_count: success.length,\n  failure_count: failure.length,\n  total_count: allResults.length,\n  success_details: successList,\n  failure_details: failureList\n};"
+        "jsCode": "// 關鍵：必須使用 $items(\"節點名\") 才能穿透 Loop 抓取所有歷史資料\n// const allResults = $items(\"Mark Status\"); \nconst allResults = $input.all();\nconst success = allResults.filter(i => i.json.status.includes('成功'));\nconst failure = allResults.filter(i => i.json.status.includes('失敗'));\n\nconst successList = success.map(i => i.json.name).join('\\n') || '無';\nconst failureList = failure.map(i => i.json.name + (i.json.reason !== 'OK' ? ' (' + i.json.reason + ')' : '')).join('\\n') || '無';\n\nreturn {\n  success_count: success.length,\n  failure_count: failure.length,\n  total_count: allResults.length,\n  success_details: successList,\n  failure_details: failureList\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1838,6 +1849,20 @@
       ],
       "id": "ed6863e5-7942-402f-88b2-c9eb7349bb23",
       "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1584,
+        256
+      ],
+      "id": "3b5fdc18-2c43-4a21-bf50-9040831d9a3e",
+      "name": "Aggregate"
     }
   ],
   "pinData": {},
@@ -1863,6 +1888,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-09T09:44:42.129Z",
-  "versionId": "f218db60-c357-4cea-8886-394d83a9c750"
+  "updatedAt": "2026-01-09T09:49:02.353Z",
+  "versionId": "adad61bc-0bc9-4542-a9c8-4ffb07b994c8"
 }
