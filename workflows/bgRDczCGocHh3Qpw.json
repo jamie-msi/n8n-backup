@@ -213,6 +213,17 @@
           }
         ]
       ]
+    },
+    "Send a notification": {
+      "main": [
+        [
+          {
+            "node": "Line Messaging",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-12-31T07:35:55.105Z",
@@ -949,6 +960,38 @@
       "id": "2d8810cd-53f0-404a-b975-6e1570475e68",
       "name": "Wait",
       "webhookId": "39fc0184-5504-4bd5-99f8-865ec21ff03e"
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.line",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "cbaeb797-b6b7-4c80-97a5-a4f21d17967c",
+      "name": "Send a notification"
+    },
+    {
+      "parameters": {
+        "operation": "multicast"
+      },
+      "type": "@aotoki/n8n-nodes-line-messaging.lineMessaging",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "b49d5e85-9882-4717-8d9e-be1180b79b76",
+      "name": "Line Messaging",
+      "credentials": {
+        "lineMessagingApi": {
+          "id": "he1Kgc9WLQAHq6jx",
+          "name": "Line Messaging account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -968,6 +1011,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-01-09T02:57:21.076Z",
-  "versionId": "c80fe383-93d1-440d-b939-71fe00fc95d1"
+  "updatedAt": "2026-01-09T09:36:51.289Z",
+  "versionId": "6e26efb8-b8c7-4a3b-b38e-f79f468da5d9"
 }
