@@ -1504,7 +1504,7 @@
       "parameters": {
         "content": "## Main workflow loop",
         "height": 435,
-        "width": 1878,
+        "width": 2022,
         "color": 7
       },
       "id": "3d996985-0064-4749-85a1-2191c73746c9",
@@ -1748,7 +1748,7 @@
       "type": "@aotoki/n8n-nodes-line-messaging.lineMessaging",
       "typeVersion": 1,
       "position": [
-        2224,
+        2544,
         448
       ],
       "id": "f9d79fce-007b-4a76-9f92-37e9a431d8e0",
@@ -1784,7 +1784,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2016,
+        2288,
         448
       ],
       "id": "3b067571-fd90-4e72-82cc-fead33b7cfb6",
@@ -1795,7 +1795,7 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        1808,
+        2048,
         448
       ],
       "id": "2d4cbfb8-bb3b-4765-8475-223555cf7bda",
@@ -1839,12 +1839,12 @@
     },
     {
       "parameters": {
-        "jsCode": "// 關鍵：必須使用 $items(\"節點名\") 才能穿透 Loop 抓取所有歷史資料\n// const allResults = $items(\"Mark Status\"); \nconst allResults = $input.all();\nconst success = allResults.filter(i => i.json.status.includes('成功'));\nconst failure = allResults.filter(i => i.json.status.includes('失敗'));\n\nconst successList = success.map(i => i.json.name).join('\\n') || '無';\nconst failureList = failure.map(i => i.json.name + (i.json.reason !== 'OK' ? ' (' + i.json.reason + ')' : '')).join('\\n') || '無';\n\nreturn {\n  success_count: success.length,\n  failure_count: failure.length,\n  total_count: allResults.length,\n  success_details: successList,\n  failure_details: failureList\n};"
+        "jsCode": "// 從 Aggregate 節點抓取彙整後的陣列資料\n// 根據截圖，資料結構在 $input.all()[0].json.data 中\nconst allResults = $input.all()[0].json.data || []; \n\nconst success = allResults.filter(i => i.status && i.status.includes('成功'));\nconst failure = allResults.filter(i => i.status && i.status.includes('失敗'));\n\nconst successList = success.map(i => i.name).join('\\n') || '無';\nconst failureList = failure.map(i => i.name + (i.reason !== 'OK' ? ' (' + i.reason + ')' : '')).join('\\n') || '無';\n\nreturn {\n  success_count: success.length,\n  failure_count: failure.length,\n  total_count: allResults.length,\n  success_details: successList,\n  failure_details: failureList\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1536,
+        1808,
         448
       ],
       "id": "ed6863e5-7942-402f-88b2-c9eb7349bb23",
@@ -1858,8 +1858,8 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        1584,
-        256
+        1536,
+        448
       ],
       "id": "3b5fdc18-2c43-4a21-bf50-9040831d9a3e",
       "name": "Aggregate"
@@ -1888,6 +1888,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-09T09:49:02.353Z",
-  "versionId": "adad61bc-0bc9-4542-a9c8-4ffb07b994c8"
+  "updatedAt": "2026-01-09T09:52:52.757Z",
+  "versionId": "b394d069-454a-4eb2-830b-4ad59586d049"
 }
