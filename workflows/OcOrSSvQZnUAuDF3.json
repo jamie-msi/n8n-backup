@@ -1091,27 +1091,21 @@
         ]
       ]
     },
-    "Limit": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Line Messaging": {
       "main": [
         []
       ]
     },
-    "Edit Fields": {
+    "Setting Line Notification Account": {
+      "main": [
+        []
+      ]
+    },
+    "Limit": {
       "main": [
         [
           {
-            "node": "Line Messaging",
+            "node": "Setting Line Notification Account",
             "type": "main",
             "index": 0
           }
@@ -1207,7 +1201,7 @@
       "name": "Get File",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1760,
+        1808,
         1136
       ],
       "typeVersion": 4.2
@@ -1411,7 +1405,9 @@
     },
     {
       "parameters": {
-        "options": {}
+        "options": {
+          "reset": false
+        }
       },
       "id": "d05e2a25-24be-43fb-baa4-9c3391840e70",
       "name": "Loop Over Items",
@@ -1420,7 +1416,8 @@
         1280,
         592
       ],
-      "typeVersion": 3
+      "typeVersion": 3,
+      "alwaysOutputData": false
     },
     {
       "parameters": {
@@ -1690,24 +1687,13 @@
       "typeVersion": 3.2
     },
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.limit",
-      "typeVersion": 1,
-      "position": [
-        1536,
-        448
-      ],
-      "id": "2d4cbfb8-bb3b-4765-8475-223555cf7bda",
-      "name": "Limit"
-    },
-    {
       "parameters": {
         "operation": "multicast",
-        "to": "=",
+        "to": "={{ $json['Jamie 助理'] }}",
         "messages": {
           "values": [
             {
-              "text": "test"
+              "text": "=✅ 任務執行完成！\n執行清單如下：\n{{ $json.success_list }}\n\n共完成 {{ $json.success_list.split('\\n').length }} 筆。"
             }
           ]
         }
@@ -1715,8 +1701,8 @@
       "type": "@aotoki/n8n-nodes-line-messaging.lineMessaging",
       "typeVersion": 1,
       "position": [
-        2016,
-        448
+        2176,
+        464
       ],
       "id": "f9d79fce-007b-4a76-9f92-37e9a431d8e0",
       "name": "Line Messaging",
@@ -1750,11 +1736,22 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1792,
-        448
+        1952,
+        464
       ],
       "id": "3b067571-fd90-4e72-82cc-fead33b7cfb6",
-      "name": "Edit Fields"
+      "name": "Setting Line Notification Account"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1744,
+        464
+      ],
+      "id": "2d4cbfb8-bb3b-4765-8475-223555cf7bda",
+      "name": "Limit"
     }
   ],
   "pinData": {},
@@ -1780,6 +1777,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-09T05:52:58.768Z",
-  "versionId": "fe423396-51d7-4ed1-873b-e79eab852df9"
+  "updatedAt": "2026-01-09T09:14:53.195Z",
+  "versionId": "a5dec685-5920-4c27-8df4-58faf8a036a0"
 }
