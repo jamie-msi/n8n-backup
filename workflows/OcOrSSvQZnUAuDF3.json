@@ -1729,7 +1729,7 @@
         "messages": {
           "values": [
             {
-              "text": "=📊 Backup n8n workflows to GitHub 備份執行報告\n------------------------------------\n✅ 成功: {{ $json.success_count }} 筆\n{{ $json.success_details }}\n\n❌ 失敗: {{ $json.failure_count }} 筆\n{{ $json.failure_details }}\n------------------------------------\n執行時間: {{ $now.format('yyyy-MM-dd HH:mm') }}"
+              "text": "=📊 Backup n8n workflows to GitHub 備份執行報告\n------------------------------------\n🧾 已處理: {{ $json.total_count }} 筆\n\n✅ 成功: {{ $json.success_count }} 筆\n{{ $json.success_details }}\n\n❌ 失敗: {{ $json.failure_count }} 筆\n{{ $json.failure_details }}\n------------------------------------\n執行時間: {{ $now.format('yyyy-MM-dd HH:mm') }}"
             }
           ]
         }
@@ -1828,7 +1828,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// 使用 $items() 確保抓取 Mark Status 節點在所有 loop 產生的全部數據\nconst allResults = $(\"Mark Status\").all(); \n\nconst success = allResults.filter(i => i.json.status.includes('成功'));\nconst failure = allResults.filter(i => i.json.status.includes('失敗'));\n\nconst successList = success.map(i => i.json.name).join('\\n') || '無';\nconst failureList = failure.map(i => i.json.name + (i.json.reason !== 'OK' ? ' (' + i.json.reason + ')' : '')).join('\\n') || '無';\n\nreturn {\n  success_count: success.length,\n  failure_count: failure.length,\n  total_count:allResults.length,\n  success_details: successList,\n  failure_details: failureList\n};"
+        "jsCode": "// 關鍵：必須使用 $items(\"節點名\") 才能穿透 Loop 抓取所有歷史資料\nconst allResults = $items(\"Mark Status\"); \n\nconst success = allResults.filter(i => i.json.status.includes('成功'));\nconst failure = allResults.filter(i => i.json.status.includes('失敗'));\n\nconst successList = success.map(i => i.json.name).join('\\n') || '無';\nconst failureList = failure.map(i => i.json.name + (i.json.reason !== 'OK' ? ' (' + i.json.reason + ')' : '')).join('\\n') || '無';\n\nreturn {\n  success_count: success.length,\n  failure_count: failure.length,\n  total_count: allResults.length,\n  success_details: successList,\n  failure_details: failureList\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1863,6 +1863,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-09T09:42:10.955Z",
-  "versionId": "751a6c18-5cf0-4c65-9dfd-48a5feb5190a"
+  "updatedAt": "2026-01-09T09:44:42.129Z",
+  "versionId": "f218db60-c357-4cea-8886-394d83a9c750"
 }
