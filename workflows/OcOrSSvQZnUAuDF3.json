@@ -1828,7 +1828,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// 抓取 \"Mark Status\" 這個節點在所有循環中產生的數據\nconst allResults = $items(\"Mark Status\");\n\nconst success = allResults.filter(i => i.json.status.includes('成功'));\nconst failure = allResults.filter(i => i.json.status.includes('失敗'));\n\nconst successList = success.map(i => i.json.name).join('\\n') || '無';\nconst failureList = failure.map(i => i.json.name + ' (' + i.json.reason + ')').join('\\n') || '無';\n\nreturn {\n  success_count: success.length,\n  failure_count: failure.length,\n  success_details: successList,\n  failure_details: failureList\n};"
+        "jsCode": "// 使用 $items() 確保抓取 Mark Status 節點在所有 loop 產生的全部數據\nconst allResults = $items(\"Mark Status\"); \n\nconst success = allResults.filter(i => i.json.status.includes('成功'));\nconst failure = allResults.filter(i => i.json.status.includes('失敗'));\n\nconst successList = success.map(i => i.json.name).join('\\n') || '無';\nconst failureList = failure.map(i => i.json.name + (i.json.reason !== 'OK' ? ' (' + i.json.reason + ')' : '')).join('\\n') || '無';\n\nreturn {\n  success_count: success.length,\n  failure_count: failure.length,\n  success_details: successList,\n  failure_details: failureList\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1863,6 +1863,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-09T09:34:36.657Z",
-  "versionId": "a19f3f53-267d-43ac-85c9-7b9e642f0e58"
+  "updatedAt": "2026-01-09T09:36:01.948Z",
+  "versionId": "a7aac8d9-7fb2-42a5-9acd-df86f6448f4c"
 }
