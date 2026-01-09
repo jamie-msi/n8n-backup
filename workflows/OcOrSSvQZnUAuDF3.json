@@ -1090,6 +1090,17 @@
           }
         ]
       ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Line Messaging",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2026-01-09T03:18:38.944Z",
@@ -1434,14 +1445,14 @@
       "parameters": {
         "content": "## Main workflow loop",
         "height": 435,
-        "width": 1350,
+        "width": 1878,
         "color": 7
       },
       "id": "3d996985-0064-4749-85a1-2191c73746c9",
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        768,
+        784,
         416
       ],
       "typeVersion": 1
@@ -1667,11 +1678,40 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        1552,
+        1776,
         448
       ],
       "id": "2d4cbfb8-bb3b-4765-8475-223555cf7bda",
       "name": "Limit"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "to": "U63b3ca654c205a0f0c540b3f03cd2143",
+        "messages": {
+          "values": [
+            {
+              "altText": "備份Workflows至Github已完成",
+              "flexJson": "{\n  \"type\": \"bubble\",\n  \"body\": {\n    \"type\": \"box\",\n    \"layout\": \"vertical\",\n    \"contents\": [\n      {\n        \"type\": \"text\",\n        \"text\": \"備份Workflows至Github已完成\"\n      }\n    ]\n  }\n}",
+              "type": "flex"
+            }
+          ]
+        }
+      },
+      "type": "@aotoki/n8n-nodes-line-messaging.lineMessaging",
+      "typeVersion": 1,
+      "position": [
+        2032,
+        448
+      ],
+      "id": "e5f820af-4488-4d9d-843d-4e2159fb789d",
+      "name": "Line Messaging",
+      "credentials": {
+        "lineMessagingApi": {
+          "id": "he1Kgc9WLQAHq6jx",
+          "name": "Line Messaging account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1697,6 +1737,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-09T03:27:21.698Z",
-  "versionId": "e20891fa-225a-4f72-9792-777eaa0c8926"
+  "updatedAt": "2026-01-09T05:25:30.795Z",
+  "versionId": "9623655b-7c98-4886-903e-b6a938067b3a"
 }
