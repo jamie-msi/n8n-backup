@@ -1095,6 +1095,22 @@
       "main": [
         [
           {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Line Messaging": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
             "node": "Line Messaging",
             "type": "main",
             "index": 0
@@ -1445,7 +1461,7 @@
       "parameters": {
         "content": "## Main workflow loop",
         "height": 435,
-        "width": 1350,
+        "width": 1686,
         "color": 7
       },
       "id": "3d996985-0064-4749-85a1-2191c73746c9",
@@ -1687,7 +1703,7 @@
     {
       "parameters": {
         "operation": "multicast",
-        "to": "U36af2a3f41fcf3a76610d31b2614a1d5",
+        "to": "=",
         "messages": {
           "values": [
             {
@@ -1699,7 +1715,7 @@
       "type": "@aotoki/n8n-nodes-line-messaging.lineMessaging",
       "typeVersion": 1,
       "position": [
-        1744,
+        2016,
         448
       ],
       "id": "f9d79fce-007b-4a76-9f92-37e9a431d8e0",
@@ -1710,6 +1726,35 @@
           "name": "Line Messaging account"
         }
       }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b6616526-2492-48a2-9fcb-82543081c9d0",
+              "name": "Jamie 助理",
+              "value": "U63b3ca654c205a0f0c540b3f03cd2143",
+              "type": "string"
+            },
+            {
+              "id": "21573d89-97ae-4543-a8d0-5b502b3b150f",
+              "name": "阿抱助理",
+              "value": "U36af2a3f41fcf3a76610d31b2614a1d5",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1792,
+        448
+      ],
+      "id": "3b067571-fd90-4e72-82cc-fead33b7cfb6",
+      "name": "Edit Fields"
     }
   ],
   "pinData": {},
@@ -1735,6 +1780,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-09T05:44:08.373Z",
-  "versionId": "819edaa2-e512-41e6-8e89-76922b5cf9fa"
+  "updatedAt": "2026-01-09T05:52:58.768Z",
+  "versionId": "fe423396-51d7-4ed1-873b-e79eab852df9"
 }
