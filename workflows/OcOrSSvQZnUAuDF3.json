@@ -975,7 +975,13 @@
     },
     "Loop Over Items": {
       "main": [
-        [],
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Execute Workflow",
@@ -1427,8 +1433,8 @@
     {
       "parameters": {
         "content": "## Main workflow loop",
-        "height": 434.88564057365943,
-        "width": 886.4410237965205,
+        "height": 435,
+        "width": 1350,
         "color": 7
       },
       "id": "3d996985-0064-4749-85a1-2191c73746c9",
@@ -1562,8 +1568,8 @@
       "name": "Execute Workflow",
       "type": "n8n-nodes-base.executeWorkflow",
       "position": [
-        1488,
-        592
+        1536,
+        608
       ],
       "typeVersion": 1.2
     },
@@ -1655,6 +1661,17 @@
         1152
       ],
       "typeVersion": 3.2
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1552,
+        448
+      ],
+      "id": "2d4cbfb8-bb3b-4765-8475-223555cf7bda",
+      "name": "Limit"
     }
   ],
   "pinData": {},
@@ -1680,6 +1697,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-09T03:24:19.659Z",
-  "versionId": "aaea573c-efdb-4c98-99f9-e12406a16c2e"
+  "updatedAt": "2026-01-09T03:27:21.698Z",
+  "versionId": "e20891fa-225a-4f72-9792-777eaa0c8926"
 }
