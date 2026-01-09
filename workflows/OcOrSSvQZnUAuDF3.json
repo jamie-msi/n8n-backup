@@ -1127,7 +1127,7 @@
       "parameters": {
         "content": "## Subworkflow",
         "height": 751,
-        "width": 2547,
+        "width": 3235,
         "color": 6
       },
       "id": "f21386ff-f8db-4f5d-a44c-15484d1e4ab7",
@@ -1177,8 +1177,8 @@
       "name": "Return",
       "type": "n8n-nodes-base.set",
       "position": [
-        2720,
-        1088
+        3392,
+        1296
       ],
       "typeVersion": 3.3
     },
@@ -1191,8 +1191,8 @@
       "name": "Get File",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1808,
-        960
+        1776,
+        992
       ],
       "typeVersion": 4.2
     },
@@ -1235,8 +1235,8 @@
       "name": "If file too large",
       "type": "n8n-nodes-base.if",
       "position": [
-        1616,
-        992
+        1536,
+        1024
       ],
       "typeVersion": 2
     },
@@ -1246,8 +1246,8 @@
       "name": "Merge Items",
       "type": "n8n-nodes-base.merge",
       "position": [
-        1616,
-        1248
+        2048,
+        1312
       ],
       "typeVersion": 2
     },
@@ -1259,8 +1259,8 @@
       "name": "isDiffOrNew",
       "type": "n8n-nodes-base.code",
       "position": [
-        1808,
-        1248
+        2256,
+        1312
       ],
       "typeVersion": 1
     },
@@ -1288,8 +1288,8 @@
       "name": "Check Status",
       "type": "n8n-nodes-base.switch",
       "position": [
-        2032,
-        1248
+        2464,
+        1280
       ],
       "typeVersion": 1
     },
@@ -1299,8 +1299,8 @@
       "name": "Same file - Do nothing",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        2256,
-        1088
+        2768,
+        1136
       ],
       "typeVersion": 1
     },
@@ -1310,8 +1310,8 @@
       "name": "File is different",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        2256,
-        1248
+        2768,
+        1296
       ],
       "typeVersion": 1
     },
@@ -1321,8 +1321,8 @@
       "name": "File is new",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        2256,
-        1408
+        2768,
+        1456
       ],
       "typeVersion": 1
     },
@@ -1347,8 +1347,8 @@
       "name": "Create new file",
       "type": "n8n-nodes-base.github",
       "position": [
-        2480,
-        1408
+        3056,
+        1456
       ],
       "typeVersion": 1,
       "webhookId": "8fd9e851-4968-4087-be23-af3773f9a120",
@@ -1381,8 +1381,8 @@
       "name": "Edit existing file",
       "type": "n8n-nodes-base.github",
       "position": [
-        2480,
-        1232
+        3056,
+        1296
       ],
       "typeVersion": 1,
       "webhookId": "24671015-c3f1-4ba7-8093-7a4d97b5c3c0",
@@ -1445,14 +1445,14 @@
       "parameters": {
         "content": "## Main workflow loop",
         "height": 435,
-        "width": 1878,
+        "width": 1350,
         "color": 7
       },
       "id": "3d996985-0064-4749-85a1-2191c73746c9",
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        784,
+        768,
         416
       ],
       "typeVersion": 1
@@ -1479,8 +1479,8 @@
       "name": "Get file data",
       "type": "n8n-nodes-base.github",
       "position": [
-        1408,
-        992
+        1296,
+        1024
       ],
       "typeVersion": 1,
       "alwaysOutputData": true,
@@ -1523,8 +1523,8 @@
       "name": "Globals",
       "type": "n8n-nodes-base.set",
       "position": [
-        1200,
-        1152
+        1088,
+        1184
       ],
       "typeVersion": 3.4
     },
@@ -1539,8 +1539,8 @@
       "name": "Sticky Note3",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1168,
-        1024
+        1056,
+        1072
       ],
       "typeVersion": 1
     },
@@ -1602,8 +1602,8 @@
       "name": "/",
       "type": "n8n-nodes-base.set",
       "position": [
-        960,
-        1040
+        864,
+        1088
       ],
       "typeVersion": 3.4
     },
@@ -1668,8 +1668,8 @@
       "name": "tag?",
       "type": "n8n-nodes-base.switch",
       "position": [
-        720,
-        1152
+        656,
+        1168
       ],
       "typeVersion": 3.2
     },
@@ -1678,7 +1678,7 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        1776,
+        1536,
         448
       ],
       "id": "2d4cbfb8-bb3b-4765-8475-223555cf7bda",
@@ -1686,14 +1686,12 @@
     },
     {
       "parameters": {
-        "operation": "send",
-        "to": "U63b3ca654c205a0f0c540b3f03cd2143",
+        "operation": "multicast",
+        "to": "U36af2a3f41fcf3a76610d31b2614a1d5",
         "messages": {
           "values": [
             {
-              "altText": "備份Workflows至Github已完成",
-              "flexJson": "{\n  \"type\": \"bubble\",\n  \"body\": {\n    \"type\": \"box\",\n    \"layout\": \"vertical\",\n    \"contents\": [\n      {\n        \"type\": \"text\",\n        \"text\": \"備份Workflows至Github已完成\"\n      }\n    ]\n  }\n}",
-              "type": "flex"
+              "text": "test"
             }
           ]
         }
@@ -1701,10 +1699,10 @@
       "type": "@aotoki/n8n-nodes-line-messaging.lineMessaging",
       "typeVersion": 1,
       "position": [
-        2032,
+        1744,
         448
       ],
-      "id": "e5f820af-4488-4d9d-843d-4e2159fb789d",
+      "id": "f9d79fce-007b-4a76-9f92-37e9a431d8e0",
       "name": "Line Messaging",
       "credentials": {
         "lineMessagingApi": {
@@ -1737,6 +1735,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-09T05:25:30.795Z",
-  "versionId": "9623655b-7c98-4886-903e-b6a938067b3a"
+  "updatedAt": "2026-01-09T05:38:32.399Z",
+  "versionId": "3770b9cf-2e52-49d4-b527-dec1de61a3bd"
 }
