@@ -1191,8 +1191,8 @@
       "name": "Get File",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1776,
-        992
+        1760,
+        1136
       ],
       "typeVersion": 4.2
     },
@@ -1235,8 +1235,8 @@
       "name": "If file too large",
       "type": "n8n-nodes-base.if",
       "position": [
-        1536,
-        1024
+        1504,
+        1184
       ],
       "typeVersion": 2
     },
@@ -1479,8 +1479,8 @@
       "name": "Get file data",
       "type": "n8n-nodes-base.github",
       "position": [
-        1296,
-        1024
+        1280,
+        1184
       ],
       "typeVersion": 1,
       "alwaysOutputData": true,
@@ -1735,6 +1735,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-09T05:38:32.399Z",
-  "versionId": "3770b9cf-2e52-49d4-b527-dec1de61a3bd"
+  "updatedAt": "2026-01-09T05:44:08.373Z",
+  "versionId": "819edaa2-e512-41e6-8e89-76922b5cf9fa"
 }
